@@ -1,0 +1,23 @@
+.App {
+  text-align: center;
+
+  min-height: 100vh;
+}
+
+.App h1 {
+  color: white;
+  padding: 20px 0;
+}
+
+.rotating-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 400px;
+}
+
+/* Remove unused styles */
+.App-logo, .App-header, .App-link {
+  display: none;
+}

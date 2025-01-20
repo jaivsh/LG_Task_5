@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+    <Placemark>
+        <name>3D KML Illustration</name>
+        <description>Liquid Galaxy Task 5 #4 by Jaivardhan Shukla</description>
+        <Model>
+            <Location>
+                <longitude>79.450035</longitude>
+                <latitude>25.989836</latitude>
+                <altitude>0</altitude>
+            </Location>
+            <Orientation>
+                <heading>0</heading>
+                <tilt>0</tilt>
+                <roll>0</roll>
+            </Orientation>
+            <Scale>
+                <x>100</x>
+                <y>100</y>
+                <z>100</z>
+            </Scale>
+            <Link>
+                <href>t5420.dae</href>
+            </Link>
+            <ResourceMap>
+                <Alias>
+                    <targetHref>textures/texture.png</targetHref>
+                    <sourceHref>textures/texture.png</sourceHref>
+                </Alias>
+            </ResourceMap>
+        </Model>
+    </Placemark>
+</kml>

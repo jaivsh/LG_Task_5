@@ -1,0 +1,21 @@
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+Configure your tailwind.config.js to scan your React files:
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+Add Tailwind directives to your main CSS file (usually index.css):
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
