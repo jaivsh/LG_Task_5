@@ -6,7 +6,7 @@ from shapely.geometry import Point
 # Load India's GeoJSON boundary
 india_boundary = gpd.read_file("/Users/bhoomishukla/Documents/ind.geojson")
 
-def generate_major_cities(boundary, num_cities=6):
+def generate_major_cities(boundary, num_cities=8):
     cities = []
     minx, miny, maxx, maxy = boundary.total_bounds
     
@@ -57,7 +57,7 @@ styles = '''
         <Icon>
           <href>http://maps.google.com/mapfiles/kml/shapes/dot.png</href>
         </Icon>
-        <color>ff0000ff</color>  <!-- Red color -->
+        <color>ff00ffff</color>  <!-- Yellow color -->
       </IconStyle>
       <LabelStyle>
         <scale>0</scale>
@@ -65,9 +65,9 @@ styles = '''
     </Style>
 
     <!-- Small Points Style -->
-    <Style id="smallPoint">
+    <Style id="smallPoint0">
       <IconStyle>
-        <scale>0.2</scale>
+        <scale>0.3</scale>
         <Icon>
           <href>http://maps.google.com/mapfiles/kml/shapes/dot.png</href>
         </Icon>
@@ -128,7 +128,7 @@ def main():
     for point in network_points:
         placemarks += f'''
         <Placemark>
-          <styleUrl>#smallPoint</styleUrl>
+          <styleUrl>#smallPoint0</styleUrl>
           <Point>
             <coordinates>{point.x},{point.y},0</coordinates>
           </Point>

@@ -8,15 +8,15 @@ const TwelvePetalFlower = () => {
       viewBox="0 0 300 300"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Define a gradient for the petals */}
+     
       <defs>
         <linearGradient id="gradient" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#FFA500" /> {/* Orange */}
-          <stop offset="100%" stopColor="#FF4500" /> {/* Red */}
+          <stop offset="0%" stopColor="#FFA500" /> 
+          <stop offset="100%" stopColor="#FF4500" /> 
         </linearGradient>
       </defs>
 
-      {/* Petals */}
+ 
       <path
         d="M150,30 Q170,80 150,120 Q130,80 150,30"
         fill="url(#gradient)"
@@ -78,8 +78,8 @@ const TwelvePetalFlower = () => {
         transform="rotate(330 150 150)"
       />
 
-      {/* Optional Circle in the Center */}
-      <circle cx="150" cy="150" r="20" fill="#FFD700" /> {/* Yellow center */}
+     
+      <circle cx="150" cy="150" r="20" fill="#FFD700" /> 
     </svg>
   );
 };

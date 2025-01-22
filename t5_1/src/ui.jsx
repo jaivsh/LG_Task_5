@@ -1,5 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import './index.css'; // Make sure to import your CSS file
+import './index.css'; 
+import geminiImage from '../src/images.png';
+import { Mic } from 'lucide-react';
+
+const suggestions = [
+  "What's the weather like?",
+  "Set a timer for 5 minutes",
+  "Tell me a joke",
+  "What can you do?",
+  "Play some music",
+  "Send a message"
+];
+
 
 const GoogleGLogo = () => (
   <svg viewBox="0 0 48 48" className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6">
@@ -30,7 +42,6 @@ const VoiceAssistant = () => {
   const [searchResults, setSearchResults] = useState('');
 
   useEffect(() => {
-    // Set background color directly on body
     document.body.style.backgroundColor = '#000000';
     document.body.style.margin = '0';
     
@@ -94,7 +105,41 @@ const VoiceAssistant = () => {
 
   return (
     <div className="fixed inset-0 bg-black text-white flex items-center justify-center">
+      
       <style jsx>{`
+
+@keyframes listening-pulse {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+@keyframes wave {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-5px);
+  }
+  75% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+
         @property --gradBlueRed {
           syntax: "<percentage>";
           inherits: false;
@@ -127,6 +172,10 @@ const VoiceAssistant = () => {
         }
 
         .voice-gradient {
+        box-shadow: 
+    0 -4px 8px rgba(66, 133, 244, 0.4),  /* Upward blue glow */
+    0 -8px 16px rgba(234, 67, 53, 0.2); /* Upward red glow */
+
           background: linear-gradient(
             to right,
             #4285f4 0 var(--gradBlueRed),
@@ -202,7 +251,20 @@ const VoiceAssistant = () => {
       `}</style>
 
       <div className="relative w-full max-w-xl px-4">
-        {/* Main Content */}
+    
+       
+        <div className="flex justify-center mb-8">
+        <img
+    src={geminiImage}
+    alt="Gemini"
+    className={`w-32 h-32 object-contain transition-all duration-300 ${
+      isListening ? 'animate-[listening-pulse_1.5s_ease-in-out_infinite,wave_2s_ease-in-out_infinite]' : ''
+    }`}
+    style={{
+      transformOrigin: 'center center'
+    }}
+  />
+</div>
         <div className="flex flex-col items-center justify-center">
           {!isListening ? (
             <form onSubmit={handleSubmit} className="w-full">
@@ -220,7 +282,7 @@ const VoiceAssistant = () => {
                   onClick={toggleListening}
                   className="hover:bg-gray-700 rounded-full transition-colors duration-200 p-1"
                 >
-                  <div className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 bg-gray-400 rounded-full" />
+                  <Mic className="w-5 h-5 text-gray-400" />
                 </button>
               </div>
             </form>
@@ -237,11 +299,29 @@ const VoiceAssistant = () => {
               )}
               <button onClick={toggleListening} className="mt-4">
                 <div className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 bg-blue-500 rounded-full animate-pulse mx-auto" />
+                
               </button>
+              {isListening && (
+  <div className="mt-8 flex flex-wrap gap-3 justify-center max-w-2xl mx-auto px-4">
+    {suggestions.map((suggestion, index) => (
+      <button
+        key={index}
+        onClick={() => {
+          setTranscript(suggestion);
+          handleSearch(suggestion);
+        }}
+        className="bg-gray-800 hover:bg-gray-700 text-gray-200 px-4 py-2 rounded-lg text-sm transition-colors duration-200"
+      >
+        {suggestion}
+      </button>
+    ))}
+  </div>
+)}
             </div>
+            
           )}
 
-          {/* Response Area */}
+      
           <div className="text-center mt-4">
             {isLoading ? (
               <div className="flex justify-center space-x-2">
@@ -257,7 +337,7 @@ const VoiceAssistant = () => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
+ 
         <div className="fixed left-0 right-0 bottom-24">
           <div 
             className={`mx-auto transition-all duration-500 ease-in-out ${
@@ -282,7 +362,9 @@ const VoiceAssistant = () => {
           </div>
         </div>
       </div>
+      
     </div>
+    
   );
 };
 

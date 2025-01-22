@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+    <Document>
+        <!-- Define a custom style for the balloon -->
+        <Style id="balloonStyle">
+            <BalloonStyle>
+                <text><![CDATA[
+                    <style>
+                        .balloon-content {
+                            font-family: Arial, sans-serif;
+                            color: #333;
+                            padding: 10px;
+                        }
+                        .title {
+                            font-size: 20px;
+                            font-weight: bold;
+                            color: #2c3e50;
+                            margin-bottom: 10px;
+                        }
+                        .description {
+                            font-size: 14px;
+                            line-height: 1.5;
+                        }
+                    </style>
+                    <div class="balloon-content">
+                        <div class="title">$[name]</div>
+                        <div class="description">$[description]</div>
+                    </div>
+                ]]></text>
+            </BalloonStyle>
+        </Style>
+
+        <Placemark>
+            <name>3D Model Showcase</name>
+            <description>Made by Jaivardhan Shukla for Liquid Galaxy Task 5 #4
+                
+A sophisticated 3D model demonstration showcasing advanced visualization capabilities.
+                
+Location: Sahara Desert, Morocco</description>
+            <styleUrl>#balloonStyle</styleUrl>
+
+            <!-- LookAt element for initial camera position -->
+            <LookAt>
+                <longitude>-4.0000</longitude>
+                <latitude>31.1000</latitude>
+                <altitude>0</altitude>
+                <heading>45</heading>
+                <tilt>60</tilt>
+                <range>500</range>
+                <altitudeMode>absolute</altitudeMode>
+            </LookAt>
+
+            <Model>
+                <altitudeMode>absolute</altitudeMode>
+                <Location>
+                    <longitude>-4.0000</longitude>
+                    <latitude>31.1000</latitude>
+                    <altitude>-28</altitude>
+                </Location>
+                <Orientation>
+                    <heading>0</heading>
+                    <tilt>0</tilt>
+                    <roll>0</roll>
+                </Orientation>
+                <Scale>
+                    <x>100</x>
+                    <y>100</y>
+                    <z>100</z>
+                </Scale>
+                <Link>
+                    <href>t5420.dae</href>
+                    <refreshMode>onInterval</refreshMode>
+                </Link>
+                <ResourceMap>
+                    <Alias>
+                        <targetHref>textures/texture.png</targetHref>
+                        <sourceHref>textures/texture.png</sourceHref>
+                    </Alias>
+                </ResourceMap>
+            </Model>
+
+            <!-- Add TimeSpan for temporal visibility -->
+            <TimeSpan>
+                <begin>2024-01-21T00:00:00Z</begin>
+                <end>2025-01-21T00:00:00Z</end>
+            </TimeSpan>
+        </Placemark>
+    </Document>
+</kml>

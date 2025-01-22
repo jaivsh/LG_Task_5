@@ -8,7 +8,7 @@ const RotatingImage = () => {
   const [starState, setStarState] = useState('white');
   
   const shapes = [
-    // React logo hexagon centered at (150,150)
+    
     `M${150 + (58.88972745734182 - 69.28203230275508)*1.8} ${150 + (6 - 80)*1.8} ` +
     `Q${150 + (69.28203230275508 - 69.28203230275508)*1.8} ${150 + (0 - 80)*1.8} ${150 + (79.67433714816835 - 69.28203230275508)*1.8} ${150 + (6 - 80)*1.8} ` +
     `L${150 + (128.1717597600969 - 69.28203230275508)*1.8} ${150 + (34 - 80)*1.8} ` +
@@ -22,13 +22,13 @@ const RotatingImage = () => {
     `L${150 + (0 - 69.28203230275508)*1.8} ${150 + (52 - 80)*1.8} ` +
     `Q${150 + (0 - 69.28203230275508)*1.8} ${150 + (40 - 80)*1.8} ${150 + (10.392304845413264 - 69.28203230275508)*1.8} ${150 + (34 - 80)*1.8} Z`,
           
-    // Large circle
+   
     "M150 20 C230 20 280 70 280 150 C280 230 230 280 150 280 C70 280 20 230 20 150 C20 70 70 20 150 20 Z",
   
-    // Elongated circle with star cutout (larger size)
+   
     "M150 20 C220 20 270 70 270 150 C270 230 220 280 150 280 C80 280 30 230 30 150 C30 70 80 20 150 20 Z",
 
-    // Larger 8-Petal Flower
+ 
     Array.from({ length: 8 })
     .map((_, i) => {
       const angle = (i * 45) * (Math.PI / 180);
@@ -46,29 +46,29 @@ const RotatingImage = () => {
   useEffect(() => {
     let timeoutId;
     const startNewCycle = () => {
-      // Phase 1: Initial rotation with static white star
+      
       setAnimationPhase('initialRotation');
       setStarState('white');
       
-      // Phase 2: Everything collapses
+  
       timeoutId = setTimeout(() => {
         setStarState('collapsing');
         setAnimationPhase('collapsing');
         
-        // Phase 3: Black star emerges
+    
         timeoutId = setTimeout(() => {
           setStarState('black');
           setAnimationPhase('emerging');
           
-          // Phase 4: Pause after black star reaches full size
+          
           timeoutId = setTimeout(() => {
-            setStarState('paused');
+            setStarState('rotating');
             
-            // Reset cycle after pause
+       
             timeoutId = setTimeout(startNewCycle, 1000);
-          }, 2000); // Time for black star emergence
-        }, 2000); // Time for collapse
-      }, 10000); // Initial rotation phase
+          }, 2000); 
+        }, 2000); 
+      }, 10000); 
     };
 
     startNewCycle();
@@ -122,8 +122,8 @@ const RotatingImage = () => {
             <stop offset="100%" stopColor="#8A2BE2" className="gradient-end" />
           </linearGradient>
           <radialGradient id="shineGradient">
-            <stop offset="0%" stopColor="rgba(147, 112, 219, 0)" />
-            <stop offset="50%" stopColor="rgba(147, 112, 219, 0)" className="shine-mid" />
+            <stop offset="0%" stopColor="rgba(141, 88, 245, 0)" />
+            <stop offset="50%" stopColor="rgba(116, 56, 236, 0)" className="shine-mid" />
             <stop offset="100%" stopColor="rgba(147, 112, 219, 0)" />
           </radialGradient>
         </defs>
@@ -180,7 +180,7 @@ const RotatingImage = () => {
               height: "100%",
               objectFit: "cover",
               display: ['black', 'paused'].includes(starState) ? 'block' : 'none',
-              animation: starState === 'black' ? 'emergeAndRotate 2s forwards' : 'none'
+              animation: starState === 'black' ? 'emergeAndRotate 2s forwards' :'emergeAndRotate 2s forwards'
             }}
           />
         </div>
@@ -260,16 +260,16 @@ const RotatingImage = () => {
           @keyframes shiftColorStart {
             0% { stop-color: #00688B; }
             25% { stop-color: #4169E1; }
-            50% { stop-color: #9370DB; }  /* Medium Purple */
-            75% { stop-color: #B19CD9; }  /* Light Purple */
+            50% { stop-color: #9370DB; }  
+            75% { stop-color: #B19CD9; }  
             100% { stop-color: #00688B; }
           }
 
           @keyframes shiftColorEnd {
             0% { stop-color: #8A2BE2; }
             25% { stop-color: #483D8B; }
-            50% { stop-color: #9932CC; }  /* Dark Orchid */
-            75% { stop-color: #BA55D3; }  /* Medium Orchid */
+            50% { stop-color: #9932CC; } 
+            75% { stop-color: #BA55D3; }  
             100% { stop-color: #8A2BE2; }
           }
 
@@ -281,7 +281,7 @@ const RotatingImage = () => {
               stop-color: rgba(147, 112, 219, 0.3);
             }
             50% { 
-              stop-color: rgba(186, 85, 211, 0.8);  /* Brighter purple glow */
+              stop-color: rgba(186, 85, 211, 0.8);  
             }
             75% {
               stop-color: rgba(147, 112, 219, 0.3);
