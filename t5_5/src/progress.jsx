@@ -37,43 +37,38 @@ const ProgressSteps = () => {
   };
 
   return (
-    <div className={`w-full max-w-2xl mx-auto p-8 transition-opacity duration-300 ${isResetting ? 'opacity-50' : 'opacity-100'}`}>
-      <div className="flex items-center justify-between relative mb-8">
+    <div className={`w-full max-w-screen-sm mx-auto p-4 transition-opacity duration-300 ${isResetting ? 'opacity-50' : 'opacity-100'}`}>
+      <div className="flex items-center justify-between relative mb-8 space-x-4 md:space-x-8 overflow-hidden">
         {steps.map((step, index) => (
-          <div key={step.id} className="flex flex-col items-center relative">
-            
-            <div className="relative">
-             
+          <div key={step.id} className="flex flex-col items-center relative w-1/4 md:w-auto min-h-[120px] py-2">
+            <div className="relative flex flex-col items-center">
               {index < steps.length - 1 && (
-                <div className="absolute w-32 h-1" style={{ left: '50px', top: '20px' }}>
-                  
-                  <div className="absolute h-full bg-blue-200 w-24" />
-            
+                <div className="absolute w-16 h-1" style={{ left: '43px', top: '20px' }}>
+                  <div className="absolute h-full bg-blue-200 w-12" />
                   <div
                     className={`
                       absolute h-full bg-blue-500 transition-all duration-500
-                      ${index + 1 < currentStep || isComplete ? 'w-24' :
-                      index + 1 === currentStep ? 'w-12' :
+                      ${index + 1 < currentStep || isComplete ? 'w-12' :
+                      index + 1 === currentStep ? 'w-6' :
                       'w-0'}
                     `}
                   />
                 </div>
               )}
-           
               <div className={`
-                w-10 h-10 rounded-full flex items-center justify-center relative z-10
+                w-8 h-8 rounded-full flex items-center justify-center relative z-10
                 transition-all duration-300
                 ${step.id < currentStep || isComplete
                   ? 'bg-blue-500 text-white'
                   : step.id === currentStep
                   ? 'bg-blue-500 text-white border-2 border-white ring-2 ring-blue-500'
                   : 'bg-blue-200 text-blue-500'}
+                box-sizing: border-box;  /* Ensure border is on the inside */
               `}>
                 {step.id < currentStep || isComplete ? <Check className="w-6 h-6" /> : step.id}
               </div>
             </div>
-       
-            <span className="mt-2 text-sm font-medium">{step.label}</span>
+            <span className="mt-2 text-xs md:text-sm font-medium">{step.label}</span>
             <span className={`
               text-xs mt-1 transition-colors duration-300
               ${step.id <= currentStep || isComplete ? 'text-blue-500' : 'text-gray-400'}
@@ -85,14 +80,13 @@ const ProgressSteps = () => {
           </div>
         ))}
       </div>
-      
-      <div className="flex items-center gap-4">
-     
+
+      <div className="flex items-center justify-between gap-2 md:gap-4 flex-wrap">
         <button
           onClick={handleBack}
           disabled={currentStep === 1 || isComplete || isResetting}
           className={`
-            px-6 py-2 rounded-lg text-white font-medium transition-all duration-300
+            px-4 py-2 rounded-lg text-white font-medium transition-all duration-300
             flex items-center gap-2
             ${currentStep === 1 || isComplete ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600'}
             ${isResetting ? 'opacity-50 cursor-not-allowed' : ''}
@@ -102,25 +96,23 @@ const ProgressSteps = () => {
           Back
         </button>
 
-       
         <button
           onClick={handleNext}
           disabled={isResetting}
           className={`
-            px-6 py-2 rounded-lg text-white font-medium transition-all duration-300
+            px-4 py-2 rounded-lg text-white font-medium transition-all duration-300
             ${isComplete ? 'bg-green-500' : 'bg-blue-500 hover:bg-blue-600'}
             ${isResetting ? 'opacity-50 cursor-not-allowed' : ''}
           `}
         >
           {isComplete ? 'Completed!' : currentStep === steps.length ? 'Complete Checkout' : 'Next Step'}
         </button>
-        
-      
+
         <button
           onClick={handleRelaunch}
           disabled={isResetting}
           className={`
-            px-6 py-2 rounded-lg text-white font-medium 
+            px-4 py-2 rounded-lg text-white font-medium 
             bg-gray-500 hover:bg-gray-600 
             flex items-center gap-2 transition-all duration-300
             ${isResetting ? 'opacity-50 cursor-not-allowed' : ''}

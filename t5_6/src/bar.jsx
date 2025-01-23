@@ -14,41 +14,41 @@ const NavigationBar = () => {
   const NavItem = ({ icon: Icon, label, id }) => (
     <button
       onClick={() => handleClick(id)}
-      className={`relative flex flex-col items-center justify-center p-8 w-48 h-32 group transition-all duration-300 ease-in-out
+      className={`relative flex flex-col items-center justify-center p-4 w-20 h-20 group transition-all duration-300 ease-in-out
         ${activeItem === id ? 'text-white font-bold scale-110' : 'text-gray-400 hover:text-gray-300 hover:scale-105 hover:bg-gray-800'}
         rounded-xl`}
     >
       <div className="relative">
         {id === 'you' ? (
           <div className={`relative ${animating === id ? 'animate-bounce-custom' : ''}`}>
-            <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-700">
+            <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-700">
               <div className="w-full h-full rounded-full bg-gray-800 flex items-center justify-center">
-                <User className="w-8 h-8 text-white" />
+                <User className="w-6 h-6 text-white" />
               </div>
             </div>
-            <div className="absolute -right-1 bottom-0 w-5 h-5 bg-green-500 rounded-full transform translate-y-1/4 animate-pulse" />
+            <div className="absolute -right-1 bottom-0 w-4 h-4 bg-green-500 rounded-full transform translate-y-1/4 animate-pulse" />
           </div>
         ) : (
           <div className={`
             ${animating === id && id === 'home' ? 'animate-bounce-custom' : ''}
             ${animating === id && id === 'notifications' ? 'animate-ring' : ''}
           `}>
-            <Icon className="w-12 h-12" />
+            <Icon className="w-8 h-8" />
             {id === 'home' && (
-              <div className="absolute -right-1 bottom-0 w-5 h-5 bg-blue-500 rounded-full transform translate-y-1/4" />
+              <div className="absolute -right-1 bottom-0 w-4 h-4 bg-blue-500 rounded-full transform translate-y-1/4" />
             )}
           </div>
         )}
       </div>
-      <span className="mt-4 text-lg font-medium">{label}</span>
+      <span className="mt-2 text-sm md:text-lg font-medium">{label}</span>
       {activeItem === id && (
-        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-blue-500 rounded-full" />
+        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-10 h-1 bg-blue-500 rounded-full" />
       )}
     </button>
   );
 
   return (
-    <div className="flex items-center justify-center w-full bg-gray-900 text-white py-6 px-8 rounded-lg shadow-xl">
+    <div className="fixed bottom-0 left-0 w-full bg-gray-900 text-white py-4 px-6 rounded-t-lg shadow-xl">
       <style>
         {`
           @keyframes bounceCustom {
@@ -71,7 +71,7 @@ const NavigationBar = () => {
           }
         `}
       </style>
-      <nav className="flex items-center space-x-8">
+      <nav className="flex items-center justify-around space-x-4 ">
         <NavItem icon={Home} label="Home" id="home" />
         <NavItem icon={Bell} label="Notifications" id="notifications" />
         <NavItem label="You" id="you" />

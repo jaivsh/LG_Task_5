@@ -5,6 +5,10 @@ import ProgressSteps from './progress';
 function App() {
   return (
     <div className="App">
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
       <ProgressSteps/>
       <div className="flex-grow" />
       <footer className="text-center p-4 animate-pulse">
